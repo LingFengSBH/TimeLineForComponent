@@ -3,6 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Engine/Public/TimerManager.h"
+#include "Engine/World.h"
 #include "Modules/ModuleManager.h"
 
 class FTimeLineForComponentModule : public IModuleInterface

@@ -2,13 +2,10 @@
 
 #pragma once
 
+#include "TimeLineForComponent.h"
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintAsyncActionBase.h"
 #include "AsyncTimelineNode.generated.h"
-
-/**
- * 
- */
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FTimeLineReady,UObject*,NodeObject);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FTimeLineExecute);
@@ -18,13 +15,13 @@ class TIMELINEFORCOMPONENT_API UAsyncTimelineNode : public UBlueprintAsyncAction
 	GENERATED_BODY()
 	
 	
-	UPROPERTY(BlueprintAssignable)
+	UPROPERTY(BlueprintAssignable,Category = "TimeLineForComponent")
 	FTimeLineReady Ready;
 	
-	UPROPERTY(BlueprintAssignable)
+	UPROPERTY(BlueprintAssignable,Category = "TimeLineForComponent")
 	FTimeLineExecute Update;
 
-	UPROPERTY(BlueprintAssignable)
+	UPROPERTY(BlueprintAssignable,Category = "TimeLineForComponent")
 	FTimeLineExecute Finished;
 	
 	UObject* MyOuter;
@@ -35,21 +32,21 @@ class TIMELINEFORCOMPONENT_API UAsyncTimelineNode : public UBlueprintAsyncAction
 	void ExecuteUpdateDelegate();
 
 public:
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(BlueprintReadWrite,Category = "TimeLineForComponent")
 	float CurrentRatio;
 
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(BlueprintReadWrite,Category = "TimeLineForComponent")
 	bool bPlayBack;
 
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(BlueprintReadWrite,Category = "TimeLineForComponent")
 	bool bStop;
 
 	float TimeLineLength;
 
-	UFUNCTION(BlueprintCallable,meta=(HidePin="Outer",DefaultToSelf="Outer"))
+	UFUNCTION(BlueprintCallable,BlueprintInternalUseOnly,Category = "TimeLineForComponent",meta=(HidePin="Outer",DefaultToSelf="Outer"))
 	static UAsyncTimelineNode* BluepritAsyncTimeLineNode(float Length,UObject* Outer);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable,Category = "TimeLineForComponent")
 	void Play();
 
 	void Activate() override;
